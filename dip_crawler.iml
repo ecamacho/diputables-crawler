@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<module version="4" relativePaths="false" type="JAVA_MODULE"> 
+  <component name="NewModuleRootManager"> 
+    <exclude-output/>  
+    <orderEntry type="inheritedJdk"/>  
+    <!-- output url="file://$$MODULE_DIR$$/${maven.build.dest}"/ -->  
+    <!-- output-test url="file://$$MODULE_DIR$$/${maven.test.dest}"/ -->  
+    <content url="file://$MODULE_DIR$"> 
+      <!-- sourceFolder url="file://$$MODULE_DIR$$/${pom.build.sourceDirectory}" isTestSource="false"/ -->  
+      <!-- sourceFolder url="file://$$MODULE_DIR$$/${pom.build.testSourceDirectory}" isTestSource="true"/ -->  
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true"/>
+      <excludeFolder url="file://$MODULE_DIR$/target"/>
+    </content>  
+    <orderEntry type="sourceFolder" forTests="false"/>  
+    <!-- Next include each dependency:
+      <orderEntry type="module" module-name="${dep.artifactId}"/>
+      <orderEntry type="module-library">
+        <library name="${dep.artifactId}">
+          <CLASSES>
+            <root url="jar://${lib.path}!/"/>
+          </CLASSES>
+          <JAVADOC/>
+          <SOURCES/>
+        </library>
+      </orderEntry>
+     -->  
+    <output url="file://$MODULE_DIR$/target/classes"/>
+    <output-test url="file://$MODULE_DIR$/target/test-classes"/>
+    <orderEntry type="module-library">
+      <library name="com.springsource.org.apache.log4j">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/apache/log4j/com.springsource.org.apache.log4j/1.2.15/com.springsource.org.apache.log4j-1.2.15.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/apache/log4j/com.springsource.org.apache.log4j/1.2.15/com.springsource.org.apache.log4j-1.2.15-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="com.springsource.org.apache.commons.logging">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/apache/commons/com.springsource.org.apache.commons.logging/1.1.1/com.springsource.org.apache.commons.logging-1.1.1.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/apache/commons/com.springsource.org.apache.commons.logging/1.1.1/com.springsource.org.apache.commons.logging-1.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.aop">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.aop/3.0.2.RELEASE/org.springframework.aop-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.aop/3.0.2.RELEASE/org.springframework.aop-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="com.springsource.org.aopalliance">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/aopalliance/com.springsource.org.aopalliance/1.0.0/com.springsource.org.aopalliance-1.0.0.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/aopalliance/com.springsource.org.aopalliance/1.0.0/com.springsource.org.aopalliance-1.0.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.beans">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.beans/3.0.2.RELEASE/org.springframework.beans-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.beans/3.0.2.RELEASE/org.springframework.beans-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.core">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.core/3.0.2.RELEASE/org.springframework.core-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.core/3.0.2.RELEASE/org.springframework.core-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.asm">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.asm/3.0.2.RELEASE/org.springframework.asm-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.asm/3.0.2.RELEASE/org.springframework.asm-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="com.springsource.org.apache.commons.dbcp">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/apache/commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi/com.springsource.org.apache.commons.dbcp-1.2.2.osgi.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/apache/commons/com.springsource.org.apache.commons.dbcp/1.2.2.osgi/com.springsource.org.apache.commons.dbcp-1.2.2.osgi-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="com.springsource.org.apache.commons.pool">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/apache/commons/com.springsource.org.apache.commons.pool/1.3.0/com.springsource.org.apache.commons.pool-1.3.0.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/apache/commons/com.springsource.org.apache.commons.pool/1.3.0/com.springsource.org.apache.commons.pool-1.3.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.jdbc">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.jdbc/3.0.2.RELEASE/org.springframework.jdbc-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.jdbc/3.0.2.RELEASE/org.springframework.jdbc-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.transaction">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.transaction/3.0.2.RELEASE/org.springframework.transaction-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.transaction/3.0.2.RELEASE/org.springframework.transaction-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.context">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.context/3.0.2.RELEASE/org.springframework.context-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.context/3.0.2.RELEASE/org.springframework.context-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.expression">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.expression/3.0.2.RELEASE/org.springframework.expression-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.expression/3.0.2.RELEASE/org.springframework.expression-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.test">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.test/3.0.2.RELEASE/org.springframework.test-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.test/3.0.2.RELEASE/org.springframework.test-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="com.springsource.org.junit">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/junit/com.springsource.org.junit/4.7.0/com.springsource.org.junit-4.7.0.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/junit/com.springsource.org.junit/4.7.0/com.springsource.org.junit-4.7.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="com.springsource.javax.transaction">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/javax/transaction/com.springsource.javax.transaction/1.1.0/com.springsource.javax.transaction-1.1.0.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/javax/transaction/com.springsource.javax.transaction/1.1.0/com.springsource.javax.transaction-1.1.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.context.support">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.context.support/3.0.2.RELEASE/org.springframework.context.support-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.context.support/3.0.2.RELEASE/org.springframework.context.support-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="org.springframework.aspects">
+        <CLASSES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.aspects/3.0.2.RELEASE/org.springframework.aspects-3.0.2.RELEASE.jar!/"/>
+        </CLASSES>
+        <SOURCES>
+          <root url="jar:///Users/erick/.m2/repository/org/springframework/org.springframework.aspects/3.0.2.RELEASE/org.springframework.aspects-3.0.2.RELEASE-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>  
+  <component name="ModuleRootManager"/>  
+  <!-- If it's a war project:
+  <component name="WebModuleProperties">
+    <containerElement type="module" name="${dep.artifactId}">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/classes" />
+    </containerElement>
+    <containerElement type="library" level="module" name="${dep.artifactId}">
+      <attribute name="method" value="1" />
+      <attribute name="URI" value="/WEB-INF/lib/${dep.systemPath.name}" />
+    </containerElement>
+    <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/${pom.build.warSourceDirectory}/WEB-INF/web.xml" version="" />
+    <webroots>
+      <root url="file://$MODULE_DIR$/${pom.build.warSourceDirectory}" relative="/" />
+    </webroots>
+  </component>
+  --> 
+</module>
