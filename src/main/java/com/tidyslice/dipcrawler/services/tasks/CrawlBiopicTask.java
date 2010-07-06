@@ -4,9 +4,11 @@
 package com.tidyslice.dipcrawler.services.tasks;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.cyberneko.html.parsers.DOMParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.xml.sax.SAXException;
@@ -14,6 +16,8 @@ import org.xml.sax.SAXException;
 import com.tidyslice.dipcrawler.annotation.OpenSession;
 import com.tidyslice.dipcrawler.data.DiputadoDao;
 import com.tidyslice.dipcrawler.domain.Diputado;
+import com.tidyslice.dipcrawler.domain.Iniciativa;
+import com.tidyslice.dipcrawler.services.crawlers.ActivitiyCrawler;
 import com.tidyslice.dipcrawler.services.parser.DipParser;
 
 /**
@@ -28,6 +32,8 @@ public class CrawlBiopicTask implements DipCrawler {
 	
 	private Diputado diputado;
 	
+	@Autowired
+	private ActivitiyCrawler<List<Iniciativa>, Diputado> iniciativasCrawler;
 	
 	private DipParser<Diputado> parser;
 	
@@ -61,6 +67,8 @@ public class CrawlBiopicTask implements DipCrawler {
 			if( domParser.getDocument() != null )
 			{
 				diputado = parser.parseObject(domParser.getDocument(), diputado);
+				
+				iniciativasCrawler.crawl( diputado );
 			}
 		} catch (SAXException e) {
 			logger.error( "[Error obteniendo el biopic del diputado] " + diputado, e );

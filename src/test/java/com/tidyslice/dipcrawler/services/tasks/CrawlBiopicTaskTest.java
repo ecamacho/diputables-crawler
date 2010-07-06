@@ -24,7 +24,7 @@ public class CrawlBiopicTaskTest {
 	private static final Logger logger = Logger.getLogger( CrawlBiopicTaskTest.class );
 			
 	@Autowired
-	private CrawlBiopicTask task;
+	private DipCrawler task;
 	
 	@Before
 	public void setup()
@@ -39,8 +39,11 @@ public class CrawlBiopicTaskTest {
 	@Test
 	public void testParseBiopic( )
 	{
+		logger.debug("initializing test");
 		task.run();
 		
 	}
+
+
 
 }

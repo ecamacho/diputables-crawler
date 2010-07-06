@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 
 import com.tidyslice.dipcrawler.domain.Diputado;
 import com.tidyslice.dipcrawler.services.parser.DipParser;
+import com.tidyslice.dipcrawler.util.ParserUtil;
 
 /**
  * @author erick
@@ -51,7 +52,7 @@ public class DiputadosDomParser implements DipParser<List<Diputado>> {
 								String text = cols.item(j).getTextContent();
 								switch (colCounter) {
 								case 1:
-									diputado.setNombre(parseName(text));
+									diputado.setNombre(ParserUtil.trimInitialDigits(text));
 									diputado.setBiopicUrl(getUrl(cols.item(j)
 											.getChildNodes()));
 									break;
@@ -97,19 +98,7 @@ public class DiputadosDomParser implements DipParser<List<Diputado>> {
 
 	}
 
-	private String parseName(final String name) {
-		StringBuilder parsedName = new StringBuilder();
-		if (name != null) {
-
-			for (int i = 0; i < name.length(); i++) {
-				char c = name.charAt(i);
-				if (!Character.isDigit(c)) {
-					parsedName.append(c);
-				}
-			}
-		}
-		return parsedName.toString().trim();
-	}
+	
 
 	private String getUrl(final NodeList nodes) {
 		String url = null;

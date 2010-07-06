@@ -50,7 +50,7 @@ public class DiputadoBiopicDomParser implements DipParser<Diputado>{
 				Element element = (Element) node;
 				switch( rowCounter )
 				{
-					case 1: diputado = parseFirstRow(element); break;
+					case 1 : diputado = parseFirstRow(element); break;
 					case 2 : diputado.setTipoMayoria( parseItem("Tipo de elecci—n:\n", node.getTextContent() ) ); break;
 					case 6 : diputado.setCurul( parseItem("Curul:\n", node.getTextContent() ) ); break;
 					case 8 : diputado.setFechaNacimiento( parseDate(node.getTextContent() ) ); break;
