@@ -20,7 +20,7 @@ public class MainCrawler {
 	public static void main(String[] args) {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext(  
-				new String[]{ "classpath:/spring/data-infrastructure-application-context.xml",
+				new String[]{ "classpath:/spring/data-context.xml",
 							  "classpath:/spring/application-context.xml"} 
 				);
 		

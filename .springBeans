@@ -9,8 +9,18 @@
 	<configs>
 		<config>src/main/resources/spring/application-context.xml</config>
 		<config>src/main/resources/spring/test/test-application-context.xml</config>
-		<config>src/main/resources/spring/data-infrastructure-application-context.xml</config>
+		<config>src/main/resources/spring/test/test-data-context.xml</config>
+		<config>src/main/resources/spring/data-context.xml</config>
 	</configs>
 	<configSets>
+		<configSet>
+			<name><![CDATA[defaultSet]]></name>
+			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
+			<incomplete>false</incomplete>
+			<configs>
+				<config>src/main/resources/spring/application-context.xml</config>
+				<config>src/main/resources/spring/data-context.xml</config>
+			</configs>
+		</configSet>
 	</configSets>
 </beansProjectDescription>
