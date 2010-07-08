@@ -39,7 +39,7 @@ public class DiputadoBiopicDomParser implements DipParser<Diputado>{
 		diputado = (Diputado) args[0];		
 		NodeList rows = getInfoTable(doc);
 		
-		
+		logger.info("[Crawling diputado] " + diputado);
 		int rowCounter = 0;		
 		for(int i = 0; i < rows.getLength(); i++ )
 		{
@@ -186,8 +186,9 @@ public class DiputadoBiopicDomParser implements DipParser<Diputado>{
 		try {
 			date = parser.parse( parsedDate );
 		} catch (ParseException e) {
-			logger.error("Error parsing fecha de Nacimiento:" +parsedDate);
-			throw new RuntimeException(e);
+			logger.error("Error parsing fecha de Nacimiento:" + parsedDate + " para " + diputado);
+			
+			//throw new RuntimeException(e);
 		}
 		return date;
 	}

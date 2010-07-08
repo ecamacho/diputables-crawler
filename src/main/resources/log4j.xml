@@ -10,10 +10,11 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
+	
 
 	<!-- Application logger -->
 	<logger name="com.tidyslice.dipcrawler">
-		<level value="debug" />
+		<level value="info" />
 	</logger>
 
 	<!-- 3rdparty Loggers -->
@@ -26,6 +27,10 @@
 	</logger>
 
 	<logger name="org.springframework.transaction">
+		<level value="warn" />
+	</logger>
+	
+	<logger name="org.hibernate">
 		<level value="warn" />
 	</logger>
 		

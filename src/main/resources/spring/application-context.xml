@@ -4,12 +4,16 @@
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<util:properties location="/crawler.properties" id="crawlerProperties"/>
+	
+	<tx:annotation-driven/>
 	
 	<bean id="openSessionAspect" class="com.tidyslice.dipcrawler.aspects.OpenSessionInMethodAspect" />
 	
@@ -17,11 +21,13 @@
 		<aop:include name="openSessionAspect"/>
 	</aop:aspectj-autoproxy>
 	
-	<bean id="diputadosParser" class="com.tidyslice.dipcrawler.services.parser.dom.DiputadosDomParser" />
+	<bean id="diputadosParser" class="com.tidyslice.dipcrawler.services.parser.dom.DiputadosDomParser" scope="prototype"/>
 	
-	<bean id="iniciativasLinkParser" class="com.tidyslice.dipcrawler.services.parser.dom.IniciativasLinkParser" />
+	<bean id="iniciativasLinkParser" class="com.tidyslice.dipcrawler.services.parser.dom.IniciativasLinkParser" scope="prototype"/>
 	
-	<bean id="iniciativasParser" class="com.tidyslice.dipcrawler.services.parser.dom.IniciativasParser" />
+	<bean id="iniciativasParser" class="com.tidyslice.dipcrawler.services.parser.dom.IniciativasParser" scope="prototype">
+		<property name="iniciativaDao" ref="iniciativaDao"/>	
+	</bean>
 	
 	<bean id="diputadoBiopicParser" class="com.tidyslice.dipcrawler.services.parser.dom.DiputadoBiopicDomParser" 
 			scope="prototype"/>
@@ -37,10 +43,11 @@
 	</bean>
 	
 	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
-	  <property name="corePoolSize" value="5" />
-	  <property name="maxPoolSize" value="10" />
+	  <property name="corePoolSize" value="10" />
+	  <property name="maxPoolSize" value="20" />
 	  <property name="queueCapacity" value="500" />
 	</bean>
+	
 	
 	<context:component-scan base-package="com.tidyslice.dipcrawler.data.hibernate">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>

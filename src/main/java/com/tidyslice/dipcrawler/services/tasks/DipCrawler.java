@@ -13,4 +13,6 @@ public interface DipCrawler extends Runnable{
 
 	void setDiputado( Diputado diputado );
 	
+	void crawlBiopic();
+	
 }

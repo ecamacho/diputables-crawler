@@ -152,6 +152,11 @@
             <artifactId>com.springsource.org.hibernate.ejb</artifactId>
             <version>3.3.2.GA</version>
         </dependency>
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>8.1-407.jdbc3</version>
+        </dependency>
 		<!-- embedded database for testing -->
 		<dependency>
             <groupId>org.hsqldb</groupId>

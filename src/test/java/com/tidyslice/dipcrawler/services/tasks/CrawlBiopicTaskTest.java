@@ -30,9 +30,14 @@ public class CrawlBiopicTaskTest {
 	public void setup()
 	{
 		Diputado dip = new Diputado();
-		dip.setUuid( "1e95ec448c45ea17f19a7306352c858716042b8bdf66bfb84dc4a55e422982" );
-		dip.setNombre( "Aguirre Herrera çngel" );
-		dip.setBiopicUrl( "http://sitl.diputados.gob.mx/LXI_leg/curricula.php?dipt=98" );
+		//dip.setUuid( "1e95ec448c45ea17f19a7306352c858716042b8bdf66bfb84dc4a55e422982" );
+		dip.setUuid( "6f9171bc11bbfcd185fa66c26143a2d19292c06bf662a7c5f973efbcabfa91e0" );
+		//dip.setNombre( "Aguirre Herrera çngel" );
+		dip.setNombre( "Aguilar G—ngora Efra’n Ernesto" );
+		
+		//dip.setBiopicUrl( "http://sitl.diputados.gob.mx/LXI_leg/curricula.php?dipt=98" );
+		dip.setBiopicUrl( "http://sitl.diputados.gob.mx/LXI_leg/curricula.php?dipt=794" );
+		//[asistenciasUrl=null, biopicUrl=http://sitl.diputados.gob.mx/LXI_leg/curricula.php?dipt=794, curul=null, distrito=Dtto.  3, email=null, entidad=Yucat‡n, fechaNacimiento=null, foto=null, iniciativasUrl=null, nombre=Aguilar G—ngora Efra’n Ernesto, partido=null, proposicionesUrl=null, tipoMayoria=null, uuid=6f9171bc11bbfcd185fa66c26143a2d19292c06bf662a7c5f973efbcabfa91e0, votacionesUrl=null]
 		task.setDiputado(dip);
 	}
 	

@@ -68,7 +68,7 @@ public class CrawlerServiceImpl implements CrawlerService {
 				DipCrawler task =  context.getBean( DipCrawler.class );
 				task.setDiputado( diputado );
 				taskExecutor.execute( task );
-				logger.debug( "end" );
+				
 			}
 		} catch (SAXException e) {
 			logger.error( "[Error leyendo lista de diputados] ", e);

@@ -4,6 +4,7 @@
 package com.tidyslice.dipcrawler.services.crawlers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -38,18 +39,21 @@ public class IniciativasCrawler  implements ActivitiyCrawler<List<Iniciativa>, D
 		Assert.notNull( diputado.getIniciativasUrl() );
 		
 		DOMParser domParser = new DOMParser();
+		List<Iniciativa> iniciativas = new ArrayList<Iniciativa>();
 		try {
 			logger.debug( "[crawling iniciativas ]" + diputado.getIniciativasUrl() );
 			domParser.parse( diputado.getIniciativasUrl() );
 			if( domParser.getDocument() != null )
 			{
-				List<String> urls = linkParser.parseObject( domParser.getDocument() );
-				for( String url : urls ) {
+				List<String> urls = linkParser.parseObject( domParser.getDocument(), diputado );
+				for( int periodo = 0; periodo < urls.size(); periodo++ ) {
+					String url = urls.get( periodo );
 					logger.debug( url );
 					domParser.parse( url );
 					if( domParser.getDocument() != null )
 					{
-						iniciativaParser.parseObject( domParser.getDocument() );
+						iniciativas = iniciativaParser.parseObject( domParser.getDocument(), diputado.getUuid(), 
+								periodo + 1);
 					}
 				}
 			}
@@ -60,7 +64,7 @@ public class IniciativasCrawler  implements ActivitiyCrawler<List<Iniciativa>, D
 			logger.error( "[Error obteniendo el biopic del diputado] " + diputado, e );
 			throw new RuntimeException(e);
 		}
-		return null;
+		return iniciativas;
 	}
 	
 }

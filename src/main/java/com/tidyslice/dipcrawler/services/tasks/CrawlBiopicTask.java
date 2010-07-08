@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.xml.sax.SAXException;
 
+import com.tidyslice.dipcrawler.annotation.CloseSession;
 import com.tidyslice.dipcrawler.annotation.OpenSession;
 import com.tidyslice.dipcrawler.data.DiputadoDao;
 import com.tidyslice.dipcrawler.domain.Diputado;
@@ -31,6 +32,8 @@ public class CrawlBiopicTask implements DipCrawler {
 	private DiputadoDao diputadoDao;
 	
 	private Diputado diputado;
+	
+	
 	
 	@Autowired
 	private ActivitiyCrawler<List<Iniciativa>, Diputado> iniciativasCrawler;
@@ -58,7 +61,8 @@ public class CrawlBiopicTask implements DipCrawler {
 
 	}
 	
-	private void crawlBiopic()
+	@CloseSession
+	public void crawlBiopic()
 	{
 		DOMParser domParser = new DOMParser();
 		try {
@@ -69,6 +73,7 @@ public class CrawlBiopicTask implements DipCrawler {
 				diputado = parser.parseObject(domParser.getDocument(), diputado);
 				
 				iniciativasCrawler.crawl( diputado );
+				
 			}
 		} catch (SAXException e) {
 			logger.error( "[Error obteniendo el biopic del diputado] " + diputado, e );

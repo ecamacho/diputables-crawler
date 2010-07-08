@@ -34,12 +34,14 @@ public class OpenSessionInMethodAspect {
 	
 	@Before("openSessionMethod()")
 	public void openSession() {
-		Session session = SessionFactoryUtils.getNewSession(sessionFactory);
-		logger.debug("Opening single Hibernate Session in OpenSessionInMethodAspect");
-		TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(session));
+		if( !TransactionSynchronizationManager.hasResource( sessionFactory ) ) {
+			Session session = SessionFactoryUtils.getNewSession(sessionFactory);
+			logger.debug("Opening single Hibernate Session in OpenSessionInMethodAspect");
+			TransactionSynchronizationManager.bindResource(sessionFactory, new SessionHolder(session));
+		}
 	}
 	
-	@After("openSessionMethod()")
+	@After("closeSessionMethod()")
 	public void closeSession() {
 		
 		SessionHolder sessionHolder =
@@ -50,4 +52,7 @@ public class OpenSessionInMethodAspect {
 	
 	@Pointcut("execution(@com.tidyslice.dipcrawler.annotation.OpenSession * *(..))")
 	public void openSessionMethod(){}
+	
+	@Pointcut("execution(@com.tidyslice.dipcrawler.annotation.CloseSession * *(..))")
+	public void closeSessionMethod(){}
 }

@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.tidyslice.dipcrawler.domain.Diputado;
 import com.tidyslice.dipcrawler.services.parser.DipParser;
 
 /**
@@ -24,6 +25,8 @@ public class IniciativasLinkParser implements DipParser<List<String>> {
 
 	private static final Logger logger = Logger.getLogger( IniciativasLinkParser.class );
 	
+	private Diputado diputado;
+	
 	@Value( "#{ crawlerProperties['biopic.base.diputados.url'] }" )
 	private String mainUrl;
 	
@@ -32,17 +35,22 @@ public class IniciativasLinkParser implements DipParser<List<String>> {
 		logger.debug("parsing iniciativas doc");
 		List<String> urls = new ArrayList<String>();
 		Assert.notNull( doc );
+		diputado = (Diputado) args[0];
+		NodeList iniciativas = getIniciativasTable( doc );
+		if( iniciativas != null ) {
+			NodeList links = ( (Element) iniciativas ).getElementsByTagName("A");
 		
-		NodeList links = ( (Element) getIniciativasTable( doc ) ).getElementsByTagName("A");
 		
-		//Existen periodos con iniciativas
-		if( links.getLength() > 1 ) {
-			for( int i = 1; i < links.getLength(); i++ ) {
-				Element link = (Element) links.item( i );
-				urls.add( mainUrl + link.getAttribute( "href" ) );
+		
+			if( links.getLength() > 1 ) {
+				for( int i = 1; i < links.getLength(); i++ ) {
+					Element link = (Element) links.item( i );
+					urls.add( mainUrl + link.getAttribute( "href" ) );
+					
+				}
 				
 			}
-			
+		
 		}
 		
 		return urls;
@@ -52,17 +60,20 @@ public class IniciativasLinkParser implements DipParser<List<String>> {
 	{
 		NodeList list = doc.getElementsByTagName("table");
 		
+		
 		Node tableNode = list.item( 2 );
-		Node inciativasTable = null;
+		Node iniciativasTable = null;
 		
 		for(int i = 0; i < tableNode.getChildNodes().getLength(); i++ )
-		{					
+		{
+			logger.debug( tableNode.getChildNodes().item( i ).getNodeName() );
 			if( tableNode.getChildNodes().item( i ).getNodeName().equals( "TBODY" ) )
 			{
-				inciativasTable = tableNode.getChildNodes().item( i );												
+				iniciativasTable = tableNode.getChildNodes().item( i );												
 			}
 		}
-		return inciativasTable.getChildNodes();
+		
+		return iniciativasTable != null ? iniciativasTable.getChildNodes():null;
 	}
 
 }

@@ -6,7 +6,6 @@ package com.tidyslice.dipcrawler.data.hibernate;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 
 import com.tidyslice.dipcrawler.data.GenericDao;
@@ -17,7 +16,7 @@ import com.tidyslice.dipcrawler.data.GenericDao;
  */
 public abstract class GenericDaoHibImpl<E,K> implements GenericDao<E, K> {
 
-	private static final Logger logger = Logger.getLogger( GenericDaoHibImpl.class );
+	
 	
 	protected SessionFactory sessionFactory;
 	
