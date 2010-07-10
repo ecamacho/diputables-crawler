@@ -33,6 +33,9 @@ public class DiputadoBiopicDomParser implements DipParser<Diputado>{
 	@Value("#{ crawlerProperties['biopic.base.diputados.url'] }")
 	private String baseBiopicUrl;
 	
+	
+	
+	
 	@Override
 	public Diputado parseObject(Document doc, Object... args) {
 		Assert.notNull( args );
@@ -117,7 +120,7 @@ public class DiputadoBiopicDomParser implements DipParser<Diputado>{
 	{
 		
 		NodeList images = row.getElementsByTagName("IMG");
-		diputado.setFoto( images.item(0).getAttributes().getNamedItem("src").getNodeValue() );
+		diputado.setFoto( baseBiopicUrl + images.item(0).getAttributes().getNamedItem("src").getNodeValue() );
 		
 		//independientes no tienen partido ni logo
 		if( images.getLength() > 1 )
@@ -128,7 +131,7 @@ public class DiputadoBiopicDomParser implements DipParser<Diputado>{
 			diputado.setPartido( "Independiente" );
 		}
 		
-		
+		logger.debug( diputado.getFoto());
 		
 		return diputado;
 	}

@@ -39,11 +39,15 @@ public class CrawlBiopicTaskTest {
 		dip.setBiopicUrl( "http://sitl.diputados.gob.mx/LXI_leg/curricula.php?dipt=794" );
 		//[asistenciasUrl=null, biopicUrl=http://sitl.diputados.gob.mx/LXI_leg/curricula.php?dipt=794, curul=null, distrito=Dtto.  3, email=null, entidad=Yucat‡n, fechaNacimiento=null, foto=null, iniciativasUrl=null, nombre=Aguilar G—ngora Efra’n Ernesto, partido=null, proposicionesUrl=null, tipoMayoria=null, uuid=6f9171bc11bbfcd185fa66c26143a2d19292c06bf662a7c5f973efbcabfa91e0, votacionesUrl=null]
 		task.setDiputado(dip);
+		
+		
 	}
 	
 	@Test
 	public void testParseBiopic( )
 	{
+		//System.setProperty("http.proxyHost", "myProxyServer.com");
+		//System.setProperty("http.proxyPort", "80");
 		logger.debug("initializing test");
 		task.run();
 		

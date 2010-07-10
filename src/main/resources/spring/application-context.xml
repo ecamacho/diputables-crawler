@@ -26,7 +26,8 @@
 	<bean id="iniciativasLinkParser" class="com.tidyslice.dipcrawler.services.parser.dom.IniciativasLinkParser" scope="prototype"/>
 	
 	<bean id="iniciativasParser" class="com.tidyslice.dipcrawler.services.parser.dom.IniciativasParser" scope="prototype">
-		<property name="iniciativaDao" ref="iniciativaDao"/>	
+		<property name="iniciativaDao" ref="iniciativaDao"/>
+		<property name="comisionIniciativaDao" ref="comisionIniciativaDao"/>	
 	</bean>
 	
 	<bean id="diputadoBiopicParser" class="com.tidyslice.dipcrawler.services.parser.dom.DiputadoBiopicDomParser" 
