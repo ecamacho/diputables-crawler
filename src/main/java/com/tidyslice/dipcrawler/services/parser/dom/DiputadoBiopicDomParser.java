@@ -191,7 +191,27 @@ public class DiputadoBiopicDomParser implements DipParser<Diputado>{
 		} catch (ParseException e) {
 			logger.error("Error parsing fecha de Nacimiento:" + parsedDate + " para " + diputado);
 			
-			//throw new RuntimeException(e);
+			date = addFechaToDiputado();
+		}
+		return date;
+	}
+	
+	private Date addFechaToDiputado( ) {
+		SimpleDateFormat parser = new SimpleDateFormat("dd-MM-yyyy");
+		Date date 				= null;
+		String fecha 			= null;
+		if( diputado.getUuid().equals("u9ba045a0a2fd5084b1ba74663b225374dfcce99c36d918733349471310231754")) {
+			fecha = "11-06-1974"; 
+		} else if ( "u6f2ed667fd4a91e913ebbe5d48ff3234ca9142495e3c46c33167198b8478".equals(diputado.getUuid()) || 
+					"u54c442841e6ec28a24c91b2acd1c3f1f115e5ba86039e5c2707922d0c86de23b".equals( diputado.getUuid() )) {
+			fecha = "16-12-1972";
+		}
+		if( fecha != null ) {
+			try {
+				date = parser.parse( fecha );
+			} catch (ParseException e) {
+				logger.error("Error parsing fecha de Nacimiento:" + fecha + " para " + diputado);						
+			}
 		}
 		return date;
 	}

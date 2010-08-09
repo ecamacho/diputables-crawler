@@ -84,7 +84,8 @@ public class CrawlerServiceImpl implements CrawlerService {
 
 	@Override
 	public String digestSha256(String mensaje) {
-		StringBuilder uiid = new StringBuilder();
+		//Concatenamos una letra arbitraria al inicio para que appengine la inserte bien como un key_name
+		StringBuilder uiid = new StringBuilder("u");
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			md.reset();

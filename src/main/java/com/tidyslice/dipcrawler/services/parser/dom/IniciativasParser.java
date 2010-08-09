@@ -91,7 +91,7 @@ public class IniciativasParser implements DipParser<List<Iniciativa>> {
 				}
 				
 				iniciativa.setDiputadoUiid( dip );
-				logger.debug( iniciativa );
+				
 				iniciativaDao.persist( iniciativa );
 				for( ComisionIniciativa comision : comisiones ) {
 					comisionIniciativaDao.persist( comision );
@@ -226,7 +226,7 @@ public class IniciativasParser implements DipParser<List<Iniciativa>> {
 				String com = unparsedText.substring( unparsedText.indexOf( SEPARADOR_COMISIONES ) + SEPARADOR_COMISIONES.length()  );				
 				com = com.substring( 0, com.indexOf("</B>") );
 				ComisionIniciativa comision = new ComisionIniciativa();
-				comision.setComision( com );
+				comision.setComision( com.replace("\n", "") );
 				comision.setIniciativaId("");
 				comision.setTipo(1);
 				comision.setIniciativaId(iniciativaId);
