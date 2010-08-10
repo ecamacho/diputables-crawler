@@ -29,6 +29,7 @@ import org.w3c.dom.NodeList;
 import com.tidyslice.dipcrawler.data.ComisionIniciativaDao;
 import com.tidyslice.dipcrawler.data.IniciativaDao;
 import com.tidyslice.dipcrawler.domain.ComisionIniciativa;
+import com.tidyslice.dipcrawler.domain.Diputado;
 import com.tidyslice.dipcrawler.domain.EstatusIniciativa;
 import com.tidyslice.dipcrawler.domain.Iniciativa;
 import com.tidyslice.dipcrawler.domain.RolIniciativa;
@@ -63,21 +64,28 @@ public class IniciativasParser implements DipParser<List<Iniciativa>> {
 		Assert.notNull( doc );
 		Assert.notNull( args[0] );
 		Assert.notNull( args[1] );
-		String dip = (String) args[0];
+		Diputado diputado = (Diputado) args[0];
+		String dip = diputado.getUuid();
 		Integer periodo = (Integer) args[1];
 		logger.debug( "parsing iniciativas for a given period " );
 		NodeList rows = ( (Element) getIniciativasTable( doc ) ).getElementsByTagName("TR");
 		if( rows.getLength() > 1 ) {
 			Iniciativa iniciativa;
 			for( int i = 1; i < rows.getLength(); i++ ) {
+				diputado.setNumeroIniciativas( diputado.getNumeroIniciativas() + 1 );
 				NodeList columns = ((Element) rows.item( i )).getElementsByTagName("TD");
 				iniciativa = new Iniciativa();
 				iniciativa.setId( dip + '-' + periodo + "-" + i );
-				iniciativa.setTitulo( ParserUtil.trimInitialDigits(columns.item( 0 ).getTextContent() ).trim());
+				//logger.debug(columns.item( 0 ).getTextContent());
+				if( columns.item( 0 ) != null ) {
+					iniciativa.setTitulo( ParserUtil.trimInitialDigits(columns.item( 0 ).getTextContent() ).trim());
+				} else {
+					iniciativa.setTitulo( "Sin T’tulo" );
+				}
 				iniciativa.setRolIniciativa( parseRol( iniciativa.getTitulo() ) );
 				iniciativa.setFecha( parseFecha( columns.item( 1 ).getTextContent() ) );
 				iniciativa.setSinopsis( columns.item( 2 ).getTextContent() );
-				iniciativa.setTramite( parseEstatus( columns.item( 3 ).getTextContent() ));
+				iniciativa.setTramite( parseEstatus( columns.item( 3 ).getTextContent(), diputado ));
 				Element tramiteElement = (Element) columns.item(3);
 				Element link = (Element) tramiteElement.getElementsByTagName("A").item(0);
 				List<ComisionIniciativa> comisiones = parseComisionesElement( (Element) columns.item( 1 ), iniciativa.getId() );
@@ -140,12 +148,17 @@ public class IniciativasParser implements DipParser<List<Iniciativa>> {
 		return rolLabel;
 	}
 	
-	private EstatusIniciativa parseEstatus( String estatusUnparsed ) {
+	private EstatusIniciativa parseEstatus( String estatusUnparsed, Diputado diputado ) {
 		EstatusIniciativa estatus = null;
-		if( estatusUnparsed.contains( convertToRolLabel( EstatusIniciativa.PENDIENTE ) ) ) {
+		if( estatusUnparsed.contains( convertToRolLabel( EstatusIniciativa.PENDIENTE ) ) ) {			
 			estatus = EstatusIniciativa.PENDIENTE;
+			diputado.setNumeroIniciativasPendientes( diputado.getNumeroIniciativasPendientes() + 1 );			
 		} else if( estatusUnparsed.contains( convertToRolLabel( EstatusIniciativa.APROBADA ) ) ) {
 			estatus = EstatusIniciativa.APROBADA;
+			diputado.setNumeroIniciativasAprobadas( diputado.getNumeroIniciativasAprobadas() + 1 );
+		}  else if( estatusUnparsed.contains( convertToRolLabel( EstatusIniciativa.DESECHADA ) ) ) {
+			estatus = EstatusIniciativa.DESECHADA;			
+			diputado.setNumeroIniciativasDesechadas( diputado.getNumeroIniciativasDesechadas() + 1 );
 		}
 		
 		return estatus;

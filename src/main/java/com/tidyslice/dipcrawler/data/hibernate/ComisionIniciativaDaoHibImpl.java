@@ -19,13 +19,22 @@ import com.tidyslice.dipcrawler.domain.ComisionIniciativa;
 @Scope("prototype")
 public class ComisionIniciativaDaoHibImpl extends GenericDaoHibImpl<ComisionIniciativa, Long>
 		implements ComisionIniciativaDao {
-
-	protected String domainClassName = ComisionIniciativa.class.getName();
 	
 	@Autowired
 	public void setSessionFactory( SessionFactory sessionFactory )
 	{
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public String getDomainClassName() {
+		return ComisionIniciativa.class.getName();
+	}
+
+	@Override
+	public Long getPK(ComisionIniciativa entity) {
+		
+		return entity.getId();
 	}
 
 }

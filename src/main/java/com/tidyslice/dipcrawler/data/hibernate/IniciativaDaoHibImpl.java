@@ -20,11 +20,21 @@ import com.tidyslice.dipcrawler.domain.Iniciativa;
 public class IniciativaDaoHibImpl extends GenericDaoHibImpl<Iniciativa, String> implements
 		IniciativaDao {
 
-	protected String domainClassName = Iniciativa.class.getName();
 	
 	@Autowired
 	public void setSessionFactory( SessionFactory sessionFactory )
 	{
 		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public String getDomainClassName() {		
+		return Iniciativa.class.getName();
+	}
+
+	@Override
+	public String getPK(Iniciativa entity) {
+		
+		return entity.getId();
 	}
 }

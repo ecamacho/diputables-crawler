@@ -4,6 +4,8 @@ public enum EstatusIniciativa {
 	
 	PENDIENTE,
 	
-	APROBADA
+	APROBADA,
+	
+	DESECHADA
 
 }

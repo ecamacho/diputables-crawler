@@ -26,7 +26,7 @@ public abstract class GenericDaoHibImpl<E,K> implements GenericDao<E, K> {
 	public long countAll() {
 		
 		return (Long) sessionFactory.getCurrentSession().
-			createQuery("SELECT count(e) from " + domainClassName + " e").uniqueResult(); 
+			createQuery("SELECT count(e) from " + getDomainClassName( ) + " e").uniqueResult(); 
 	}
 
 	@SuppressWarnings("unchecked")
@@ -34,14 +34,18 @@ public abstract class GenericDaoHibImpl<E,K> implements GenericDao<E, K> {
 	public List<E> findAll() {
 		
 		return sessionFactory.getCurrentSession().
-		createQuery("SELECT e from " + domainClassName + " e").list();
+		createQuery("SELECT e from " + getDomainClassName( ) + " e").list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public E findById(K id) {
+		if( id != null ) {
+			return (E) sessionFactory.getCurrentSession().get( getDomainClassName( ), (Serializable) id);
+		} else {
+			return null;
+		}
 		
-		return (E) sessionFactory.getCurrentSession().get( domainClassName, (Serializable) id);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -49,7 +53,7 @@ public abstract class GenericDaoHibImpl<E,K> implements GenericDao<E, K> {
 	public List<E> findSublist(int firstResult, int maxResults) {
 		
 		return sessionFactory.getCurrentSession().
-			createQuery("SELECT e from " + domainClassName + " e").
+			createQuery("SELECT e from " + getDomainClassName( ) + " e").
 			setFirstResult(firstResult).setMaxResults(maxResults).list();
 	}
 
@@ -64,6 +68,7 @@ public abstract class GenericDaoHibImpl<E,K> implements GenericDao<E, K> {
 	public E persist(E entity) {
 		
 		sessionFactory.getCurrentSession().persist( entity);
+		
 		return entity;
 	}
 
@@ -73,10 +78,8 @@ public abstract class GenericDaoHibImpl<E,K> implements GenericDao<E, K> {
 		
 	}
 	
-	protected String getClassName( E entity )
-	{
-		return entity.getClass().getName();
-		
-	}
+	public abstract String getDomainClassName( );
+	
 
+	public abstract K getPK( E entity );
 }

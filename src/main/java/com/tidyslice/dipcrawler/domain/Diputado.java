@@ -24,7 +24,7 @@ public class Diputado implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7230732246116988976L;
+	private static final long serialVersionUID = -9030789148549771390L;
 
 	@Id
 	private String uuid;
@@ -58,6 +58,48 @@ public class Diputado implements Serializable {
 	
 	private String votacionesUrl;
 	
+	private int numeroIniciativas;
+	
+	private int numeroIniciativasAprobadas;
+	
+	private int numeroIniciativasPendientes;
+	
+	private int numeroIniciativasDesechadas;
+	
+	public int getNumeroIniciativasAprobadas() {
+		return numeroIniciativasAprobadas;
+	}
+
+	public void setNumeroIniciativasAprobadas(int numeroIniciativasAprobadas) {
+		this.numeroIniciativasAprobadas = numeroIniciativasAprobadas;
+	}
+
+	public int getNumeroIniciativasPendientes() {
+		return numeroIniciativasPendientes;
+	}
+
+	public void setNumeroIniciativasPendientes(int numeroIniciativasPendientes) {
+		this.numeroIniciativasPendientes = numeroIniciativasPendientes;
+	}
+
+	public int getNumeroIniciativasDesechadas() {
+		return numeroIniciativasDesechadas;
+	}
+
+	public void setNumeroIniciativasDesechadas(int numeroIniciativasDesechadas) {
+		this.numeroIniciativasDesechadas = numeroIniciativasDesechadas;
+	}
+
+	
+	
+	public int getNumeroIniciativas() {
+		return numeroIniciativas;
+	}
+
+	public void setNumeroIniciativas(int numeroIniciativas) {
+		this.numeroIniciativas = numeroIniciativas;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -205,6 +247,14 @@ public class Diputado implements Serializable {
 		builder.append(iniciativasUrl);
 		builder.append(", nombre=");
 		builder.append(nombre);
+		builder.append(", numeroIniciativas=");
+		builder.append(numeroIniciativas);
+		builder.append(", numeroIniciativasAprobadas=");
+		builder.append(numeroIniciativasAprobadas);
+		builder.append(", numeroIniciativasDesechadas=");
+		builder.append(numeroIniciativasDesechadas);
+		builder.append(", numeroIniciativasPendientes=");
+		builder.append(numeroIniciativasPendientes);
 		builder.append(", partido=");
 		builder.append(partido);
 		builder.append(", proposicionesUrl=");
@@ -219,6 +269,7 @@ public class Diputado implements Serializable {
 		return builder.toString();
 	}
 
+	
 	
 	
 }

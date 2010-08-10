@@ -37,7 +37,7 @@ public class IniciativasCrawler  implements ActivitiyCrawler<List<Iniciativa>, D
 	public List<Iniciativa> crawl( Diputado diputado ) {
 		Assert.notNull( diputado );
 		Assert.notNull( diputado.getIniciativasUrl() );
-		
+						
 		DOMParser domParser = new DOMParser();
 		List<Iniciativa> iniciativas = new ArrayList<Iniciativa>();
 		try {
@@ -52,8 +52,8 @@ public class IniciativasCrawler  implements ActivitiyCrawler<List<Iniciativa>, D
 					domParser.parse( url );
 					if( domParser.getDocument() != null )
 					{
-						iniciativas = iniciativaParser.parseObject( domParser.getDocument(), diputado.getUuid(), 
-								periodo + 1);
+						iniciativas.addAll( iniciativaParser.parseObject( domParser.getDocument(), diputado, 
+								periodo + 1) );
 					}
 				}
 			}
@@ -66,5 +66,7 @@ public class IniciativasCrawler  implements ActivitiyCrawler<List<Iniciativa>, D
 		}
 		return iniciativas;
 	}
+	
+	
 	
 }
