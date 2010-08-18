@@ -83,7 +83,9 @@ public class IniciativasParser implements DipParser<List<Iniciativa>> {
 					iniciativa.setTitulo( "Sin T’tulo" );
 				}
 				iniciativa.setRolIniciativa( parseRol( iniciativa.getTitulo() ) );
-				iniciativa.setFecha( parseFecha( columns.item( 1 ).getTextContent() ) );
+				if( columns.item( 1 ) != null ) {
+					iniciativa.setFecha( parseFecha( columns.item( 1 ).getTextContent() ) );
+				}
 				iniciativa.setSinopsis( columns.item( 2 ).getTextContent() );
 				iniciativa.setTramite( parseEstatus( columns.item( 3 ).getTextContent(), diputado ));
 				Element tramiteElement = (Element) columns.item(3);
